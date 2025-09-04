@@ -6,6 +6,8 @@
     <title>Creative Portfolio | Front-End Engineer & Brand Designer</title>
     <meta name="description" content="Portfolio of a creative director, senior front-end engineer and brand designer specializing in modern web experiences and brand identity.">
     <meta name="keywords" content="front-end engineer, brand designer, creative director, portfolio, web development">
+    <meta name="color-scheme" content="dark light">
+    <meta id="meta-theme-color" name="theme-color" content="#0b0b0c">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
@@ -28,23 +30,68 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Stylesheets -->
+    <!-- Critical CSS for theme initialization -->
+    <style>
+        /* Prevent FOUC by setting default theme immediately */
+        html { 
+            background-color: #0b0b0c; 
+            color: #e7e7ea; 
+        }
+        [data-theme="light"] { 
+            background-color: #ffffff !important; 
+            color: #1a1a1a !important; 
+        }
+    </style>
+    
+    <!-- Theme initialization - run immediately, before CSS loads -->
     <script>
         (function() {
-            try {
-                var storageKey = 'portfolio-theme';
-                var saved = localStorage.getItem(storageKey);
-                var theme = saved;
-                if (!theme) {
-                    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    theme = prefersDark ? 'dark' : 'light';
-                }
+            function setTheme(theme) {
                 document.documentElement.setAttribute('data-theme', theme);
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                try {
+                    var metaTheme = document.getElementById('meta-theme-color');
+                    if (metaTheme) {
+                        metaTheme.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
+                    }
+                } catch (e) {
+                    // ignore
+                }
+                try {
+                    localStorage.setItem('portfolio-theme', theme);
+                } catch (e) {
+                    // localStorage might be blocked in some environments
+                    console.warn('Could not save theme preference:', e);
+                }
             }
+            
+            function getStoredTheme() {
+                try {
+                    return localStorage.getItem('portfolio-theme');
+                } catch (e) {
+                    return null;
+                }
+            }
+            
+            function getSystemTheme() {
+                try {
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        return 'dark';
+                    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                        return 'light';
+                    }
+                } catch (e) {
+                    // fallback if matchMedia fails
+                }
+                return 'dark'; // default fallback
+            }
+            
+            // Determine theme with proper fallback chain
+            var theme = getStoredTheme() || getSystemTheme();
+            setTheme(theme);
         })();
     </script>
+    
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>

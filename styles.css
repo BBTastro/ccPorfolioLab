@@ -145,6 +145,11 @@
   --shadow-lg: 0 10px 15px rgba(5, 150, 105, 0.25), 0 4px 6px rgba(6, 95, 70, 0.2);
 }
 
+[data-theme="light"] html,
+[data-theme="light"] body {
+  color-scheme: light dark;
+}
+
 /* ==========================================================================
    Base Styles
    ========================================================================== */
@@ -156,6 +161,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--space-20);
+  color-scheme: dark light;
 }
 
 body {

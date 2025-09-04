@@ -205,18 +205,36 @@ function updateActiveNavLink(activeSection) {
 // ==========================================================================
 
 function initializeTheme() {
-  const savedTheme = localStorage.getItem(CONFIG.STORAGE_KEYS.THEME);
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // Get current theme set by the inline script
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  state.theme = currentTheme;
   
-  // Use saved theme, or respect system preference, fallback to dark
-  state.theme = savedTheme || (prefersDark ? 'dark' : 'light');
-  applyTheme(state.theme);
+  // Verify theme is properly applied (in case inline script failed)
+  if (!document.documentElement.hasAttribute('data-theme')) {
+    applyTheme('dark'); // fallback
+  }
 }
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   state.theme = theme;
-  localStorage.setItem(CONFIG.STORAGE_KEYS.THEME, theme);
+  
+  // Save to localStorage with error handling
+  try {
+    localStorage.setItem(CONFIG.STORAGE_KEYS.THEME, theme);
+  } catch (e) {
+    console.warn('Could not save theme preference to localStorage:', e);
+  }
+  
+  // Sync browser UI theme color meta
+  try {
+    const metaTheme = document.getElementById('meta-theme-color');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
+    }
+  } catch (e) {
+    // ignore
+  }
   
   // The CSS handles icon visibility automatically based on data-theme attribute
   // No need to manually update icons here as they're controlled by CSS opacity rules
@@ -225,6 +243,32 @@ function applyTheme(theme) {
 function toggleTheme() {
   const newTheme = state.theme === 'dark' ? 'light' : 'dark';
   applyTheme(newTheme);
+}
+
+/**
+ * Verify theme is working correctly - called after page load
+ */
+function verifyTheme() {
+  const htmlElement = document.documentElement;
+  const currentTheme = htmlElement.getAttribute('data-theme');
+  
+  if (!currentTheme) {
+    console.warn('Theme attribute missing, applying default theme');
+    applyTheme('dark');
+    return;
+  }
+  
+  // Verify CSS custom properties are available
+  const computedStyle = getComputedStyle(htmlElement);
+  const bgColor = computedStyle.getPropertyValue('--bg').trim();
+  
+  if (!bgColor) {
+    console.warn('CSS custom properties not loaded, theme may not be working');
+    // Force refresh theme after a brief delay
+    setTimeout(() => {
+      applyTheme(currentTheme);
+    }, 100);
+  }
 }
 
 // ==========================================================================
