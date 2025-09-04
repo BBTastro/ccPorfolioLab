@@ -171,12 +171,17 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--fg);
-  background-color: var(--bg);
+  background: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: var(--letter-spacing-normal);
   position: relative;
   overflow-x: hidden;
+}
+
+/* Ensure html has the background to show global animations */
+html {
+  background-color: var(--bg);
 }
 
 /* Global Animated Background */
@@ -228,6 +233,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
 }
+
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
@@ -841,7 +847,7 @@ body::before {
   pointer-events: none;
 }
 
-/* Global Floating Symbols */
+/* Global Floating Symbols - Performance Optimized */
 .global-floating-symbol {
   position: fixed;
   font-family: var(--font-mono);
@@ -854,6 +860,10 @@ body::before {
   text-shadow: 
     0 0 8px var(--gradient-border),
     0 0 18px var(--accent);
+  /* Performance optimizations */
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force GPU acceleration */
+  backface-visibility: hidden;
 }
 
 /* Sophisticated California Colors - Subtle Professional Tones */

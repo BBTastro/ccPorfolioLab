@@ -1,4 +1,4 @@
-# Creative Portfolio Website
+# Portfolio Website
 
 A modern, accessible, and performant portfolio website built with vanilla HTML, CSS, and JavaScript. Features a clean monospace design inspired by shadcn/ui design tokens, with an AI-powered chatbot for visitor interaction.
 

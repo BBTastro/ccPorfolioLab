@@ -35,7 +35,7 @@ const PORTFOLIO_CONTEXT = `
 JAMES McKAY
 AI-Powered Creative Producer | Client Facing Creative Production  remote | Atlanta | Brooklyn | NYC | Los Angeles | Rotterdam | Cologne | Buenos Aires | Montevideo 
 hiya@creativecontext.studio
-+1 347-439-395
+
 PROFESSIONAL SUMMARY
 Creative producer with experience managing AI-powered projects, multi-department teams, and client relationships across branded, film, TV, and emerging  production and technology platforms. Proven expertise in project lifecycle management from concept through delivery, with deep understanding of production mangement, generative AI workflows, and interactive creation.
 Core Expertise: Producing and Project Leadership | Client Management | AI-Powered Content Creation | Cross-Functional Team Coordination | Budget & Timeline Management | Creative Production Oversight
@@ -1375,7 +1375,43 @@ function initializeContactForm() {
   }
 }
 
-// Initialize contact form when DOM is loaded
+// ==========================================================================
+// Page Loading & Performance Optimization
+// ==========================================================================
+
+/**
+ * Initialize page loading
+ */
+function initializePageLoading() {
+  let loadComplete = false;
+  
+  function triggerLoad() {
+    if (loadComplete) return;
+    loadComplete = true;
+    // Simple loading without animation control
+  }
+
+  // Check if already loaded
+  if (document.readyState === 'complete') {
+    triggerLoad();
+  } else {
+    // Wait for all resources
+    window.addEventListener('load', triggerLoad);
+    
+    // Fallback for slow connections
+    setTimeout(triggerLoad, 3000);
+    
+    // Additional safety net
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(triggerLoad, 1000);
+    });
+  }
+}
+
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+  initializePageLoading();
   initializeContactForm();
+  
+  console.log('Portfolio website initialized successfully');
 });
