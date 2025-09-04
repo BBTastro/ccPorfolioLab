@@ -644,28 +644,18 @@ function initializeModals() {
 // ==========================================================================
 
 function initializeChatHistory() {
-  // Use sessionStorage so chat history clears on new browser session/tab
-  const saved = sessionStorage.getItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
-  if (saved) {
-    try {
-      state.chatHistory = JSON.parse(saved);
-      renderChatHistory();
-    } catch (e) {
-      console.warn('Failed to load chat history:', e);
-      state.chatHistory = [];
-    }
-  }
-  
-  // Always ensure we start with empty history for new visitors
-  if (!state.chatHistory || state.chatHistory.length === 0) {
-    state.chatHistory = [];
-    renderChatHistory(); // This will show just the welcome message
-  }
+  // Always start with empty history for fresh visitor experience
+  // No need to load from storage since we clear on every page load
+  state.chatHistory = [];
+  renderChatHistory(); // This will show just the welcome message
+  console.log('Chat initialized with empty history');
 }
 
 function saveChatHistory() {
   try {
-    // Use sessionStorage so chat clears when browser session ends
+    // Save to sessionStorage only for within-session persistence (not across page loads)
+    // This allows conversation to continue if user navigates within the same tab
+    // but clears on page refresh/reload for fresh visitor experience
     sessionStorage.setItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY, JSON.stringify(state.chatHistory));
   } catch (e) {
     console.warn('Failed to save chat history:', e);
@@ -685,20 +675,16 @@ function clearChatHistory() {
 }
 
 function ensureFreshChatSession() {
-  // This function ensures each new visitor gets a fresh chat experience
-  // It's called on page load to clean up any lingering session data
+  // Force clear chat history on every page load for fresh UX and cost control
   try {
-    // Check if this is a genuine new session by looking for a session marker
-    const sessionMarker = sessionStorage.getItem('portfolio-chat-session');
-    
-    if (!sessionMarker) {
-      // This is a new session - clear any existing chat data and mark the session
-      sessionStorage.removeItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
-      sessionStorage.setItem('portfolio-chat-session', Date.now().toString());
-      state.chatHistory = [];
-    }
+    // Always clear chat history on page load - no persistence needed for portfolio chatbot
+    sessionStorage.removeItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
+    state.chatHistory = [];
+    console.log('Chat history cleared on page load for fresh visitor experience');
   } catch (e) {
     console.warn('Failed to ensure fresh chat session:', e);
+    // Fallback: clear state even if storage fails
+    state.chatHistory = [];
   }
 }
 
@@ -859,6 +845,25 @@ function initializeChat() {
   
   // Initialize chat history
   initializeChatHistory();
+
+  // Additional cleanup: Clear chat when page becomes visible (handles back/forward navigation)
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      // Page became visible - ensure fresh chat
+      ensureFreshChatSession();
+      initializeChatHistory();
+    }
+  });
+
+  // Clear chat when user leaves the page
+  window.addEventListener('beforeunload', () => {
+    try {
+      sessionStorage.removeItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
+      sessionStorage.removeItem('portfolio-chat-session');
+    } catch (e) {
+      console.warn('Failed to clear chat on page unload:', e);
+    }
+  });
 
   // Toggle chat
   if (chatToggle) {
