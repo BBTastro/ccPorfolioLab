@@ -63,7 +63,110 @@ The project already includes several shadcn/ui components (button, dialog, avata
 
 ## What I Want to Build
 
-Basic todo list app with the ability for users to add, remove, update, complete and view todos.
+You are a creative director, senior front-end engineer and brand designer. Build a quirky, on-brand, single-page portfolio website that distills the provided resume and cover letter into a clean, modern, monochrome-leaning aesthetic with tasteful CSS animations and a “shadcn/ui”-inspired design language (tokens, spacing, radius, surfaces). Use only vanilla HTML, CSS, and JavaScript for the front end. Use a Vercel serverless function to proxy the OpenAI API (no API key on the client). Deliver production-ready code and a short README with deploy steps.
+
+Inputs:
+
+- RESUME: [PASTE FULL RESUME HERE]
+- COVER_LETTER: [PASTE FULL COVER LETTER HERE]
+- LINKS_TO_REELS_&_PAST_WORK: [will ADD URLS + short labels in later request - add placeholders for now]
+
+- UPCOMING_PROJECTS: [ADD modal window with project name, 1–2 sentence blurb, status, optional asset URL]
+- CONTACT: [email, calendly or contact form endpoint, location, social links]
+
+Tech/constraints:
+
+- Front end: vanilla HTML + CSS + JS (no frameworks)
+- Hosting: Vercel
+- Design: emulate shadcn/ui tokens without React/Tailwind; define CSS variables for radius, spacing, surface/foreground colors, shadows; prefer a monospaced primary typeface (e.g., “IBM Plex Mono”, “JetBrains Mono”, or “Space Mono”)
+- Animations: subtle and quirky; avoid performance-heavy effects; prefer transform/opacity; respect reduced-motion
+- Accessibility: Light / Dark Mode, keyboard navigable, semantic HTML, focus states, sufficient contrast
+- Performance: minimal JS, defer scripts, compress assets; responsive from 320px→desktop
+- SEO: basic meta tags, social share image, sensible titles
+
+Required features/sections:
+
+1. Sticky top navigation with anchors to: About, Work, Reels, Projects, Contact. Sizing and spacing influenced by shadcn tokens. Hover/focus micro-interactions.
+2. Hero/About: distilled summary synthesized from RESUME + COVER_LETTER (tone: confident, witty, concise). Include a quirky animated accent (subtle CSS keyframe, no parallax).
+3. Work & Reels:
+    - Grid/list of LINKS_TO_PAST_WORK and REELS with thumbnails or badges.
+    - Each item has a short label, description tooltip/hover card, external link icon, and keyboard-focusable cards.
+4. Upcoming Projects “Showcase”:
+    - Responsive card grid.
+    - Clicking a card opens a modal popup window (accessible dialog) with project details, gallery slot, and a “Follow/Notify” placeholder CTA.
+    - Support multiple modals; ESC/overlay click closes; trap focus; restore focus on close.
+5. AI Chatbot:
+    - Floating chat widget (bottom-right) with a toggle button; opens a panel with messages, input box, and send action.
+    - The bot answers questions strictly about RESUME and COVER_LETTER (experience, skills, projects, achievements, availability) and should refuse unrelated topics.
+    - Client sends user messages to a Vercel serverless endpoint `/api/chat` which calls OpenAI with system prompt + condensed context derived from RESUME + COVER_LETTER. Do not expose the API key in client code.
+    - Maintain lightweight session context on the server by threading recent messages (small memory). On the client, persist minimal chat history in `localStorage` (opt-out for private mode).
+    - Knowledge base to be updated in the future - for now use resume and cover letter.
+6. Contact:
+    - Prominent email CTA and small form (name, email, message) that submits via `mailto:` fallback. Include external links to socials. Add copyable email.
+7. Footer: tiny, quiet, with back-to-top link; consistent tokens.
+
+Deliverables (files and structure):
+
+- index.html
+- styles.css (define shadcn-like CSS variables: colors, spacing scale, radius, shadow, transition)
+- script.js (nav interactions, modals, chatbot widget, reduced-motion support)
+- api/chat.js (Vercel serverless function using OpenAI; read `OPENAI_API_KEY` from env; simple input validation; safe system prompt; small rolling context)
+- public/ (any icons or social images)
+- [README.md](http://readme.md/) (setup, env, run, deploy instructions)
+
+Implementation details:
+
+- Design tokens (example – adjust to a tasteful mono look):
+:root {
+--bg: #0b0b0c;
+--fg: #e7e7ea;
+--muted-fg: #b5b5bb;
+--card: #111114;
+--border: #2a2a30;
+--accent: #9ae6b4; /* subtle quirky pop */
+--radius-sm: 6px;
+--radius-md: 10px;
+--radius-lg: 16px;
+--space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px;
+--shadow-1: 0 1px 2px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.25);
+--transition-1: 220ms cubic-bezier(.2,.8,.2,1);
+}
+    - Typography: system mono with fallback; tighter letter-spacing for headings; comfortable line-height for body.
+    - Components: cards have gentle hover lift (translateY(-2px), shadow change); focus rings using `-accent`.
+- Animations:
+    - Respect `prefers-reduced-motion`. Provide a CSS class to disable animations.
+    - Use keyframes for subtle background accent (e.g., animated dotted underline on headings, or a gentle rotating accent glyph).
+- Modals:
+    - Aria-compliant dialog with proper labelling, focus trap, scroll lock, ESC to close.
+- Chatbot:
+    - System prompt constrains scope to RESUME + COVER_LETTER. If asked unrelated questions, reply briefly and steer back.
+    - Temperature low for factual answers; slightly higher for tone when summarizing.
+    - Return streaming optional; if implemented, append tokens progressively.
+    - Rate-limit basic (e.g., 1 msg/sec).
+- Security:
+    - Validate inputs on `/api/chat`. Strip HTML. Limit message length. No key in client.
+- Content:
+    - Synthesize an “About” paragraph (80–120 words) from RESUME + COVER_LETTER.
+    - Extract key skills and achievements as compact chips/tags.
+    - Summarize each WORK/REEL link to a single sentence tooltip/hover.
+- Copy tone:
+    - Crisp, witty, slightly quirky, confident, never cringy.
+
+Acceptance criteria:
+
+- Builds and runs locally with `vercel dev` or a simple static server + Vercel functions.
+- No console errors; lighthouse reasonable on performance/accessibility.
+- All links and modals keyboard accessible; focus states visible.
+- Chatbot answers only from provided resume/cover; declines unrelated queries.
+- Works well on mobile (≤360px) through desktop widths.
+
+README must include:
+
+- How to set `OPENAI_API_KEY`
+- How to run locally and deploy to Vercel
+- Where to paste RESUME/COVER in code (e.g., a `context.js` or constants section in `script.js` or `api/chat.js`)
+- How to update LINKS_TO_PAST_WORK, REELS, UPCOMING_PROJECTS, CONTACT
+
 
 ## Request
 

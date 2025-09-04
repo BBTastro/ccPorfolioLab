@@ -1,234 +1,327 @@
-# Agentic Coding Boilerplate
+# Creative Portfolio Website
 
-A complete agentic coding boilerplate with authentication, PostgreSQL database, AI chat functionality, and modern UI components - perfect for building AI-powered applications and autonomous agents.
+A modern, accessible, and performant portfolio website built with vanilla HTML, CSS, and JavaScript. Features a clean monospace design inspired by shadcn/ui design tokens, with an AI-powered chatbot for visitor interaction.
 
-## 🚀 Features
+## ✨ Features
 
-- **🔐 Authentication**: Better Auth with Google OAuth integration
-- **🗃️ Database**: Drizzle ORM with PostgreSQL
-- **🤖 AI Integration**: Vercel AI SDK with OpenAI support
-- **🎨 UI Components**: shadcn/ui with Tailwind CSS
-- **⚡ Modern Stack**: Next.js 15, React 19, TypeScript
-- **📱 Responsive**: Mobile-first design approach
+- **Vanilla Stack**: Pure HTML, CSS, and JavaScript - no frameworks required
+- **Modern Design**: Monospace typography with shadcn/ui inspired design tokens
+- **AI Chatbot**: OpenAI-powered assistant that answers questions about your experience
+- **Fully Accessible**: WCAG 2.1 compliant with keyboard navigation and screen reader support
+- **Responsive Design**: Optimized for all screen sizes (320px to desktop)
+- **Dark/Light Mode**: Automatic theme detection with manual toggle
+- **Performance Optimized**: Minimal JavaScript, optimized assets, fast loading
+- **SEO Ready**: Proper meta tags, semantic HTML, social media optimization
 
-## 🎥 Video Tutorial
+## 🚀 Quick Start
 
-Watch the complete walkthrough of this agentic coding template:
+### Prerequisites
 
-[![Agentic Coding Boilerplate Tutorial](https://img.youtube.com/vi/T0zFZsr_d0Q/maxresdefault.jpg)](https://youtu.be/T0zFZsr_d0Q)
+- Node.js 16+ (for Vercel CLI and development)
+- OpenAI API key
+- Vercel account (for deployment)
 
-<a href="https://youtu.be/T0zFZsr_d0Q" target="_blank" rel="noopener noreferrer">🔗 Watch on YouTube</a>
+### Local Development
 
-## ☕ Support This Project
+1. **Clone and setup**
+   ```bash
+   git clone <your-repo>
+   cd portfolio-website
+   ```
 
-If this boilerplate helped you build something awesome, consider buying me a coffee!
-
-[![Buy me a coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/leonvanzyl)
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed on your machine:
-
-- **Node.js**: Version 18.0 or higher (<a href="https://nodejs.org/" target="_blank">Download here</a>)
-- **Git**: For cloning the repository (<a href="https://git-scm.com/" target="_blank">Download here</a>)
-- **PostgreSQL**: Either locally installed or access to a hosted service like Vercel Postgres
-
-## 🛠️ Quick Setup
-
-### 1. Clone or Download the Repository
-
-**Option A: Clone with Git**
-
-```bash
-git clone https://github.com/leonvanzyl/agentic-coding-starter-kit.git
-cd agentic-coding-starter-kit
-```
-
-**Option B: Download ZIP**
-Download the repository as a ZIP file and extract it to your desired location.
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Environment Setup
-
-Copy the example environment file:
-
-```bash
-cp env.example .env
-```
-
-Fill in your environment variables in the `.env` file:
-
-```env
-# Database
-POSTGRES_URL="postgresql://username:password@localhost:5432/your_database_name"
-
-# Authentication - Better Auth
-BETTER_AUTH_SECRET="your-random-32-character-secret-key-here"
-
-# Google OAuth (Get from Google Cloud Console)
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
-
-# AI Integration (Optional - for chat functionality)
-OPENAI_API_KEY="sk-your-openai-api-key-here"
-OPENAI_MODEL="gpt-5-mini"
-
-# App URL (for production deployments)
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
-
-### 4. Database Setup
-
-Generate and run database migrations:
-
-```bash
-npm run db:generate
-npm run db:migrate
-```
-
-### 5. Start the Development Server
-
-```bash
-npm run dev
-```
-
-Your application will be available at [http://localhost:3000](http://localhost:3000)
-
-## ⚙️ Service Configuration
-
-### PostgreSQL Database on Vercel
-
-1. Go to <a href="https://vercel.com/dashboard" target="_blank">Vercel Dashboard</a>
-2. Navigate to the **Storage** tab
-3. Click **Create** → **Postgres**
-4. Choose your database name and region
-5. Copy the `POSTGRES_URL` from the `.env.local` tab
-6. Add it to your `.env` file
-
-### Google OAuth Credentials
-
-1. Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>
-2. Create a new project or select an existing one
-3. Navigate to **Credentials** → **Create Credentials** → **OAuth 2.0 Client ID**
-4. Set application type to **Web application**
-5. Add authorized redirect URIs:
-   - `http://localhost:3000/api/auth/callback/google` (development)
-   - `https://yourdomain.com/api/auth/callback/google` (production)
-6. Copy the **Client ID** and **Client Secret** to your `.env` file
-
-### OpenAI API Key
-
-1. Go to <a href="https://platform.openai.com/dashboard" target="_blank">OpenAI Platform</a>
-2. Navigate to **API Keys** in the sidebar
-3. Click **Create new secret key**
-4. Give it a name and copy the key
-5. Add it to your `.env` file as `OPENAI_API_KEY`
-
-## 🗂️ Project Structure
-
-```
-src/
-├── app/                    # Next.js app directory
-│   ├── api/               # API routes
-│   │   ├── auth/          # Authentication endpoints
-│   │   └── chat/          # AI chat endpoint
-│   ├── chat/              # AI chat page
-│   ├── dashboard/         # User dashboard
-│   └── page.tsx           # Home page
-├── components/            # React components
-│   ├── auth/             # Authentication components
-│   └── ui/               # shadcn/ui components
-└── lib/                  # Utilities and configurations
-    ├── auth.ts           # Better Auth configuration
-    ├── auth-client.ts    # Client-side auth utilities
-    ├── db.ts             # Database connection
-    ├── schema.ts         # Database schema
-    └── utils.ts          # General utilities
-```
-
-## 🔧 Available Scripts
-
-```bash
-npm run dev          # Start development server with Turbopack
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run db:generate  # Generate database migrations
-npm run db:migrate   # Run database migrations
-npm run db:push      # Push schema changes to database
-npm run db:studio    # Open Drizzle Studio (database GUI)
-npm run db:dev       # Push schema for development
-npm run db:reset     # Reset database (drop all tables)
-```
-
-## 📖 Pages Overview
-
-- **Home (`/`)**: Landing page with setup instructions and features overview
-- **Dashboard (`/dashboard`)**: Protected user dashboard with profile information
-- **Chat (`/chat`)**: AI-powered chat interface using OpenAI (requires authentication)
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Install the Vercel CLI globally:
-
+2. **Install Vercel CLI** (if not already installed)
    ```bash
    npm install -g vercel
    ```
 
-2. Deploy your application:
+3. **Set up environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
 
+   **Where to get your OpenAI API key:**
+   - Visit [OpenAI API](https://platform.openai.com/api-keys)
+   - Create an account or sign in
+   - Generate a new API key
+   - Copy the key to your `.env.local` file
+
+4. **Start development server**
+   ```bash
+   vercel dev
+   ```
+
+   Your site will be available at `http://localhost:3000`
+
+### Alternative: Static Development
+
+If you don't need the AI chat functionality during development:
+
+```bash
+# Serve static files (any HTTP server works)
+python -m http.server 8000
+# or
+npx serve .
+```
+
+## 📝 Content Customization
+
+### 1. Personal Information
+
+**Update the following locations with your information:**
+
+**In `index.html`:**
+- Line 6-8: Update title and meta description
+- Line 14-16: Update Open Graph meta tags
+- Line 21-24: Update Twitter meta tags
+- Line 48: Update hero title and highlight text
+- Line 52-57: Update hero description
+- Line 59-66: Update skill chips
+- Contact section (lines 280-320): Update email, location, social links
+
+**In `script.js`:**
+- Lines 25-60: Update `PORTFOLIO_CONTEXT` with your actual resume and cover letter content
+- Line 280: Update email address for copy functionality
+
+### 2. Work Portfolio & Reels
+
+**In `index.html`, update the Work section (lines 120-180):**
+```html
+<article class="work-item" tabindex="0">
+  <div class="work-content">
+    <h3 class="work-title">Your Project Title</h3>
+    <p class="work-description">Brief description of your project</p>
+    <div class="work-tags">
+      <span class="tag">Technology</span>
+      <span class="tag">Used</span>
+    </div>
+  </div>
+  <div class="work-link">
+    <a href="https://your-project-url.com" class="external-link">
+      <span class="link-text">View Project</span>
+      <span class="link-icon" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</article>
+```
+
+**Update the Reels section (lines 190-230):**
+```html
+<article class="reel-item" tabindex="0">
+  <div class="reel-thumbnail">
+    <div class="reel-placeholder" aria-hidden="true">▶</div>
+  </div>
+  <div class="reel-content">
+    <h3 class="reel-title">Your Reel Title</h3>
+    <p class="reel-description">Brief description of your reel</p>
+  </div>
+  <a href="https://your-reel-url.com" class="reel-link">
+    <span class="link-icon" aria-hidden="true">↗</span>
+  </a>
+</article>
+```
+
+### 3. Upcoming Projects
+
+**In `script.js`, update the `MODAL_DATA` object (lines 70-95):**
+```javascript
+const MODAL_DATA = {
+  'project-id': {
+    title: 'Your Project Title',
+    description: 'Detailed project description...',
+    status: 'In Development', // or 'Planning', 'Concept'
+    timeline: 'Expected completion date',
+    gallery: ['Asset descriptions or URLs']
+  }
+};
+```
+
+**In `index.html`, update project cards to match your project IDs.**
+
+### 4. AI Chat Context
+
+**Update the AI chatbot knowledge base in `script.js` (lines 25-60):**
+
+Replace the `PORTFOLIO_CONTEXT` variable with your actual resume and cover letter content:
+
+```javascript
+const PORTFOLIO_CONTEXT = `
+RESUME SUMMARY:
+[Paste your resume summary here]
+
+KEY SKILLS:
+[List your key skills]
+
+EXPERIENCE HIGHLIGHTS:
+[Paste your key experience points]
+
+COVER LETTER EXCERPT:
+[Paste relevant cover letter content]
+
+AVAILABILITY: [Your availability status]
+LOCATION: [Your location]
+`;
+```
+
+## 🚀 Deployment
+
+### Deploy to Vercel
+
+1. **Connect your repository to Vercel:**
+   ```bash
+   vercel
+   ```
+
+2. **Set environment variables in Vercel:**
+   - Go to your Vercel dashboard
+   - Select your project
+   - Go to Settings → Environment Variables
+   - Add: `OPENAI_API_KEY` with your OpenAI API key
+
+3. **Deploy:**
    ```bash
    vercel --prod
    ```
 
-3. Follow the prompts to configure your deployment
-4. Add your environment variables when prompted or via the Vercel dashboard
+### Alternative Deployment Options
 
-### Production Environment Variables
+**Netlify:**
+1. Connect your Git repository to Netlify
+2. Set build command: `echo "Static site - no build needed"`
+3. Set publish directory: `/`
+4. Add environment variable: `OPENAI_API_KEY`
 
-Ensure these are set in your production environment:
+**GitHub Pages (without AI chat):**
+1. Push to GitHub
+2. Enable GitHub Pages in repository settings
+3. AI chat won't work without serverless functions
 
-- `POSTGRES_URL` - Production PostgreSQL connection string
-- `BETTER_AUTH_SECRET` - Secure random 32+ character string
-- `GOOGLE_CLIENT_ID` - Google OAuth Client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth Client Secret
-- `OPENAI_API_KEY` - OpenAI API key (optional)
-- `OPENAI_MODEL` - OpenAI model name (optional, defaults to gpt-5-mini)
-- `NEXT_PUBLIC_APP_URL` - Your production domain
+## 🎨 Customization
 
-## 🎥 Tutorial Video
+### Design Tokens
 
-Watch my comprehensive tutorial on how to use this agentic coding boilerplate to build AI-powered applications:
+All design tokens are defined in `styles.css` (lines 10-60). Customize:
 
-<a href="https://youtu.be/T0zFZsr_d0Q" target="_blank" rel="noopener noreferrer">📺 YouTube Tutorial - Building with Agentic Coding Boilerplate</a>
+```css
+:root {
+  /* Colors */
+  --bg: #0b0b0c;
+  --fg: #e7e7ea;
+  --accent: #9ae6b4; /* Your brand color */
+  
+  /* Spacing */
+  --space-4: 16px;
+  
+  /* Typography */
+  --font-mono: 'Your-Preferred-Font', monospace;
+}
+```
+
+### Adding New Sections
+
+1. Add HTML structure in `index.html`
+2. Add corresponding styles in `styles.css`
+3. Update navigation in both HTML and JavaScript
+4. Add any interactive functionality in `script.js`
+
+## 🔧 Configuration
+
+### OpenAI Chat Settings
+
+Modify chat behavior in `api/chat.js`:
+
+```javascript
+const CONFIG = {
+  OPENAI_MODEL: 'gpt-3.5-turbo', // or 'gpt-4'
+  OPENAI_TEMPERATURE: 0.3, // 0-1, lower = more focused
+  OPENAI_MAX_TOKENS: 300, // Response length limit
+  MAX_REQUESTS_PER_MINUTE: 10, // Rate limiting
+};
+```
+
+### Performance Settings
+
+Adjust performance settings in `script.js`:
+
+```javascript
+const CONFIG = {
+  SCROLL_OFFSET: 80, // Navigation scroll offset
+  SMOOTH_SCROLL_DURATION: 1000, // Scroll animation duration
+  MAX_MESSAGE_LENGTH: 500, // Chat message limit
+};
+```
+
+## 🧪 Testing
+
+### Accessibility Testing
+
+1. **Keyboard Navigation**: Tab through all interactive elements
+2. **Screen Reader**: Test with NVDA, JAWS, or VoiceOver
+3. **Color Contrast**: Ensure 4.5:1 ratio minimum
+4. **Focus Indicators**: Verify visible focus states
+
+### Performance Testing
+
+```bash
+# Lighthouse audit
+npx lighthouse http://localhost:3000 --output html
+
+# Bundle size analysis
+npx bundlesize
+```
+
+### Browser Testing
+
+Test in:
+- Chrome/Edge (Chromium)
+- Firefox
+- Safari
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Chat not working:**
+- Verify `OPENAI_API_KEY` is set correctly
+- Check browser console for API errors
+- Ensure Vercel functions are deployed
+
+**Styles not loading:**
+- Check file paths are correct
+- Verify CSS file exists and is accessible
+- Check for CSS syntax errors
+
+**JavaScript errors:**
+- Open browser developer tools
+- Check console for error messages
+- Verify all script dependencies are loaded
+
+**Mobile responsiveness:**
+- Test on actual devices
+- Use browser developer tools device simulation
+- Check viewport meta tag is present
+
+## 📚 Resources
+
+- [shadcn/ui Documentation](https://ui.shadcn.com/)
+- [OpenAI API Documentation](https://platform.openai.com/docs)
+- [Vercel Deployment Guide](https://vercel.com/docs)
+- [Web Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Need Help?
-
-If you encounter any issues:
-
-1. Check the [Issues](https://github.com/leonvanzyl/agentic-coding-starter-kit/issues) section
-2. Review the documentation above
-3. Create a new issue with detailed information about your problem
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ---
 
-**Happy coding! 🚀**
+**Need help?** Open an issue or contact [your-email@domain.com]

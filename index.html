@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio | Front-End Engineer & Brand Designer</title>
+    <meta name="description" content="Portfolio of a creative director, senior front-end engineer and brand designer specializing in modern web experiences and brand identity.">
+    <meta name="keywords" content="front-end engineer, brand designer, creative director, portfolio, web development">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Creative Portfolio | Front-End Engineer & Brand Designer">
+    <meta property="og:description" content="Portfolio showcasing creative direction, front-end engineering, and brand design work.">
+    <meta property="og:image" content="/public/social-share.png">
+    <meta property="og:url" content="https://your-domain.vercel.app">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Creative Portfolio | Front-End Engineer & Brand Designer">
+    <meta name="twitter:description" content="Portfolio showcasing creative direction, front-end engineering, and brand design work.">
+    <meta name="twitter:image" content="/public/social-share.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Global Animated Background -->
+    <div class="global-animated-background" aria-hidden="true">
+        <!-- Minimalist Code & Tech Symbols -->
+        <div class="global-floating-symbol color-coral">{ }</div>
+        <div class="global-floating-symbol color-orange">◊</div>
+        <div class="global-floating-symbol color-amber">&lt;/&gt;</div>
+        <div class="global-floating-symbol color-peach">$</div>
+        <div class="global-floating-symbol color-pink">◆</div>
+        <div class="global-floating-symbol color-sunset">◉</div>
+        <div class="global-floating-symbol color-gold">◯</div>
+        <div class="global-floating-symbol color-tangerine">◈</div>
+        <div class="global-floating-symbol color-salmon">⬢</div>
+        <div class="global-floating-symbol color-mango">⟡</div>
+        <div class="global-floating-symbol color-purple">▢</div>
+        <div class="global-floating-symbol color-teal">◐</div>
+        
+        <!-- Origami-Style Geometric Symbols -->
+        <div class="global-floating-symbol color-indigo">△</div>
+        <div class="global-floating-symbol color-coral">□</div>
+        <div class="global-floating-symbol color-orange">◇</div>
+        <div class="global-floating-symbol color-amber">⬟</div>
+        <div class="global-floating-symbol color-peach">⬢</div>
+        <div class="global-floating-symbol color-pink">⬡</div>
+        <div class="global-floating-symbol color-sunset">▲</div>
+        <div class="global-floating-symbol color-gold">▼</div>
+        
+        <!-- Simple Line Art Symbols -->
+        <div class="global-floating-symbol color-tangerine">▶</div>
+        <div class="global-floating-symbol color-salmon">◆</div>
+        <div class="global-floating-symbol color-mango">⬙</div>
+        <div class="global-floating-symbol color-purple">⬚</div>
+        <div class="global-floating-symbol color-teal">⬛</div>
+        <div class="global-floating-symbol color-cyan">⬜</div>
+        
+        <!-- Minimal Tech Icons -->
+        <div class="global-floating-symbol color-indigo">✦</div>
+        <div class="global-floating-symbol color-coral">✧</div>
+        <div class="global-floating-symbol color-orange">✦</div>
+        <div class="global-floating-symbol color-amber">◆</div>
+        <div class="global-floating-symbol color-peach">◇</div>
+        <div class="global-floating-symbol color-pink">◈</div>
+    </div>
+    
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Sticky Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">◉</span>
+                <span class="nav-name">Creative Context Studio</span>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none">
+                    <a href="#about" class="nav-link" role="menuitem">About</a>
+                </li>
+                <li role="none">
+                    <a href="#work" class="nav-link" role="menuitem">Work</a>
+                </li>
+                <li role="none">
+                    <a href="#projects" class="nav-link" role="menuitem">Upcoming</a>
+                </li>
+                <li role="none">
+                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                <svg class="theme-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main" role="main">
+        <!-- Hero/About Section -->
+        <section id="about" class="hero-section" aria-labelledby="hero-title">
+            <!-- Animated Background Elements -->
+            <div class="animated-background" aria-hidden="true">
+                <!-- Minimalist Code & Geometric Floating Symbols -->
+                <div class="floating-symbol symbol-ai color-coral">{ }</div>
+                <div class="floating-symbol symbol-node color-orange">◊</div>
+                <div class="floating-symbol symbol-connect color-amber">&lt;/&gt;</div>
+                <div class="floating-symbol symbol-circuit color-peach">$</div>
+                <div class="floating-symbol symbol-data color-pink">△</div>
+                <div class="floating-symbol symbol-neural color-sunset">◇</div>
+                <div class="floating-symbol symbol-code color-gold">◆</div>
+                <div class="floating-symbol symbol-spark color-tangerine">◈</div>
+                <div class="floating-symbol symbol-flow color-salmon">⬢</div>
+                <div class="floating-symbol symbol-link color-mango">◉</div>
+                <div class="floating-symbol symbol-extra color-purple">✧</div>
+                <div class="floating-symbol symbol-extra2 color-teal">▲</div>
+                <div class="floating-symbol symbol-extra3 color-cyan">□</div>
+                <div class="floating-symbol symbol-extra4 color-indigo">✦</div>
+                <div class="floating-symbol symbol-extra5 color-coral">◆</div>
+                
+                <!-- Static Background Symbols -->
+                <div class="static-symbol color-coral">⬡</div>
+                <div class="static-symbol color-amber">▼</div>
+                <div class="static-symbol color-sunset">◐</div>
+                <div class="static-symbol color-orange">⟡</div>
+                <div class="static-symbol color-gold">▢</div>
+                <div class="static-symbol color-purple">⬢</div>
+                <div class="static-symbol color-teal">◯</div>
+            </div>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 id="hero-title" class="hero-title">
+                            <span class="animated-accent" aria-hidden="true">✦</span>
+                            <span class="hero-highlight">AI-Powered Creative Producer</span>
+                            <span class="animated-accent" aria-hidden="true">✦</span>
+                        </h1>
+                        <p class="hero-description">
+                            Creative producer with experience managing AI-powered projects, multi-department teams, and client relationships 
+                            across branded, film, TV, and emerging technology production and platforms. Proven expertise in project lifecycle management 
+                            from concept through delivery, with deep understanding of production management, generative AI workflows, and interactive creation.
+                        </p>
+                        <div class="hero-skills">
+                            <span class="skill-chip">AI-Powered Creation</span>
+                            <span class="skill-chip">Creative Direction</span>
+                            <span class="skill-chip">Production and Post</span>
+                            <span class="skill-chip">Emerging Technology</span>
+                            <span class="skill-chip">Context Engineering</span>
+                            <span class="skill-chip">Client Management</span>
+                        </div>
+                    </div>
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="code-typewriter-placeholder">
+                            <span class="placeholder-text">mystery box</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work and Reels Section -->
+        <section id="work" class="work-section" aria-labelledby="work-title">
+            <div class="container">
+                <h2 id="work-title" class="section-title">Work and Reels</h2>
+                <div class="work-grid">
+                    <!-- Project Cards with Thumbnails -->
+
+                    <article class="project-card" data-type="reel" data-project="tv-film-brand" tabindex="0">
+                        <div class="project-thumbnail">
+                            <div class="thumbnail-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <div class="geometric-animation film-shape">
+                                    <div class="shape-layer shape-1"></div>
+                                    <div class="shape-layer shape-2"></div>
+                                    <div class="shape-layer shape-3"></div>
+                                    <div class="shape-layer shape-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">TV Film & Brand Showcase</h3>
+                            <p class="project-description">Production reel featuring work across television, film, and brands. Created with global teams and crews</p>
+                            <div class="project-tags">
+                                <span class="tag">TV Production</span>
+                                <span class="tag">Film</span>
+                                <span class="tag">Brand</span>
+                                <span class="tag">Post</span>
+                                <span class="tag">Video</span>
+                                <span class="tag">Networks</span>
+                                <span class="tag">Remote</span>
+                            </div>
+                        </div>
+                        <div class="project-link">
+                            <a href="#" class="external-link" aria-label="Watch TV Film & Brand Showcase reel">
+                                <span class="link-text">Watch Reel</span>
+                                <span class="link-icon" aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-type="work" data-project="context-engineering" tabindex="0">
+                        <div class="project-thumbnail">
+                            <div class="thumbnail-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <div class="geometric-animation brand-shape">
+                                    <div class="shape-layer shape-1"></div>
+                                    <div class="shape-layer shape-2"></div>
+                                    <div class="shape-layer shape-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Context Engineering and Micro Apps</h3>
+                            <p class="project-description">AI-powered context engineering and micro SaaS application development</p>
+                            <div class="project-tags">
+                                <span class="tag">AI Engineering</span>
+                                <span class="tag">RAG Systems</span>
+                                <span class="tag">Context Engineering</span>
+                            </div>
+                        </div>
+                        <div class="project-link">
+                            <a href="#" class="external-link" aria-label="View Context Engineering and Micro Apps project">
+                                <span class="link-text">View Project</span>
+                                <span class="link-icon" aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-type="work" data-project="ugc-stories" tabindex="0">
+                        <div class="project-thumbnail">
+                            <div class="thumbnail-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <div class="geometric-animation dashboard-shape">
+                                    <div class="shape-layer shape-1"></div>
+                                    <div class="shape-layer shape-2"></div>
+                                    <div class="shape-layer shape-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">UGC Stories</h3>
+                            <p class="project-description">AI-powered content creation with Runway, Veo 3, and Nano Banana. Social Campaigns, Marketing, and Ads</p>
+                            <div class="project-tags">
+                                
+                                <span class="tag">Runway</span>
+                                <span class="tag">Veo 3</span>
+                                <span class="tag">MCPs</span>
+                                <span class="tag">n8n</span>
+                                <span class="tag">Brands</span>
+                                <span class="tag">Animations</span>
+                                <span class="tag">Social Campaign</span>
+                            </div>
+                        </div>
+                        <div class="project-link">
+                            <a href="#" class="external-link" aria-label="View UGC Stories project">
+                                <span class="link-text">View Project</span>
+                                <span class="link-icon" aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section" aria-labelledby="projects-title">
+            <div class="container">
+                <h2 id="projects-title" class="section-title">Upcoming Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card" data-project="agentic-process">
+                        <div class="project-content">
+                            <h3 class="project-title">Agentic Process</h3>
+                            <p class="project-description">AI-powered workflow automation and intelligent project management</p>
+                            <div class="project-status">
+                                <span class="status-badge status-development">In Development</span>
+                            </div>
+                        </div>
+                        <button class="project-button" aria-label="Learn more about Agentic Process">
+                            Learn More
+                        </button>
+                    </article>
+
+                    <article class="project-card" data-project="ai-platform">
+                        <div class="project-content">
+                            <h3 class="project-title">AI powered Project, Task, and Ticket Management</h3>
+                            <p class="project-description">AI-powered project management with smart task routing and automation</p>
+                            <div class="project-status">
+                                <span class="status-badge status-development">In Development</span>
+                            </div>
+                        </div>
+                        <button class="project-button" aria-label="Learn more about AI powered Project, Task, and Ticket Management">
+                            Learn More
+                        </button>
+                    </article>
+
+                    <article class="project-card" data-project="design-system">
+                        <div class="project-content">
+                            <h3 class="project-title">ShotList CoPilot</h3>
+                            <p class="project-description">Micro app for content creators syncing Google Sheets with shot lists</p>
+                            <div class="project-status">
+                                <span class="status-badge status-planning">Planning</span>
+                            </div>
+                        </div>
+                        <button class="project-button" aria-label="Learn more about ShotList CoPilot">
+                            Learn More
+                        </button>
+                    </article>
+
+                    <article class="project-card" data-project="mobile-app">
+                        <div class="project-content">
+                            <h3 class="project-title">Generative Mobile Thriller</h3>
+                            <p class="project-description">AI-powered mobile thriller generation platform</p>
+                            <div class="project-status">
+                                <span class="status-badge status-concept">Concept</span>
+                            </div>
+                        </div>
+                        <button class="project-button" aria-label="Learn more about Generative Mobile Thriller">
+                            Learn More
+                        </button>
+                    </article>
+
+                    <article class="project-card" data-project="finance-bro">
+                        <div class="project-content">
+                            <h3 class="project-title">Finance Bro</h3>
+                            <p class="project-description">OpenAI-powered RAG chatbot for markets, finance, and Bitcoin</p>
+                            <div class="project-status">
+                                <span class="status-badge status-development">In Development</span>
+                            </div>
+                        </div>
+                        <button class="project-button" aria-label="Learn more about Finance Bro">
+                            Learn More
+                        </button>
+                    </article>
+
+                    <article class="project-card" data-project="robotina">
+                        <div class="project-content">
+                            <h3 class="project-title">Robotina</h3>
+                            <p class="project-description">Contextual prompt and agent library with creator, editor and automation features</p>
+                            <div class="project-status">
+                                <span class="status-badge status-planning">Planning</span>
+                            </div>
+                        </div>
+                        <button class="project-button" aria-label="Learn more about Robotina">
+                            Learn More
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 id="contact-title" class="section-title">Let's Work Together</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p class="contact-description">
+                            Ready to bring your next project to life? I'm always excited to collaborate 
+                            on innovative projects and creative challenges.
+                        </p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <strong>Email</strong>
+                                <div class="email-container">
+                                    <a href="mailto:hiya@creativecontext.studio" class="contact-email">hiya@creativecontext.studio</a>
+                                    <button class="copy-email" aria-label="Copy email address" title="Copy email">
+                                        <span class="copy-icon" aria-hidden="true">⧉</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                               <br>
+                                <div class="location-text">
+                                    <span class="location-primary">Remote</span> • 
+                                    Atlanta • Brooklyn • NYC • Los Angeles • Rotterdam • 
+                                    Cologne • Buenos Aires • Montevideo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" action="mailto:hiya@creativecontext.studio" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-social-links">
+                <a href="https://www.linkedin.com/in/james-mckay-line-producer" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/BBTastro" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.imdb.com/name/nm1452109/" class="social-link" aria-label="IMDB" target="_blank" rel="noopener">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                </a>
+                <a href="mailto:hiya@creativecontext.studio" class="social-link" aria-label="Email">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="footer-content">
+                <p class="footer-text">© 2025 BBTMVD<br>
+                Collaborated and crafted using 
+                <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents" target="_blank" rel="noopener">Claude Code</a>,
+                <a href="https://docs.cursor.com/en/get-started/concepts" target="_blank" rel="noopener">Cursor</a>,
+                <a href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide" target="_blank" rel="noopener">OpenAI</a>,
+                <a href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener">Playwright</a>, and
+                <a href="https://www.shadcn.io/mcp/claude-code" target="_blank" rel="noopener">shadcn</a>
+                with help from <a href="https://www.leonvanzyl.com" target="_blank" rel="noopener">Leon</a>.
+                </p>
+                
+
+                <button class="back-to-top" aria-label="Back to top">
+                    <span class="back-to-top-icon" aria-hidden="true">↑</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Project Modals with shadcn/ui Design -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <div class="modal-title-section">
+                    <h3 id="modal-title" class="modal-title"></h3>
+                    <p class="modal-subtitle"></p>
+                </div>
+                <button class="modal-close" aria-label="Close modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle" aria-label="Toggle chat" aria-expanded="false">
+            <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <circle cx="9" cy="10" r="1"/>
+                <circle cx="15" cy="10" r="1"/>
+            </svg>
+        </button>
+        <div class="chat-panel" id="chat-panel" aria-hidden="true">
+            <div class="chat-header">
+                <h3 class="chat-title">Ask About My Experience</h3>
+                <button class="chat-close" aria-label="Close chat">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages" role="log" aria-live="polite">
+                <div class="chat-message bot-message">
+                    <div class="message-content">
+                        Hi! I can answer questions about my experience, skills, and projects. What would you like to know?
+                    </div>
+                </div>
+            </div>
+            <form class="chat-form" id="chat-form">
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        id="chat-input" 
+                        class="chat-input" 
+                        placeholder="Ask about my experience..."
+                        aria-label="Chat message input"
+                        maxlength="500"
+                    >
+                    <button type="submit" class="chat-send" aria-label="Send message">
+                        <span class="send-icon" aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script defer src="script.js"></script>
+</body>
+</html>
