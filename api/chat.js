@@ -3,7 +3,7 @@
  * Handles OpenAI integration for portfolio chatbot
  */
 
-const { Configuration, OpenAIApi } = require('openai');
+const OpenAI = require('openai');
 
 // Rate limiting storage (in production, use Redis or similar)
 const rateLimitStore = new Map();
@@ -147,14 +147,12 @@ async function callOpenAI(messages) {
     throw new Error('OpenAI API key not configured');
   }
 
-  const configuration = new Configuration({
+  const openai = new OpenAI({
     apiKey: apiKey,
   });
 
-  const openai = new OpenAIApi(configuration);
-
   try {
-    const response = await openai.createChatCompletion({
+    const response = await openai.chat.completions.create({
       model: CONFIG.OPENAI_MODEL,
       messages: messages,
       temperature: CONFIG.OPENAI_TEMPERATURE,
@@ -163,17 +161,17 @@ async function callOpenAI(messages) {
       frequency_penalty: 0.1,
     });
 
-    if (!response.data.choices || response.data.choices.length === 0) {
+    if (!response.choices || response.choices.length === 0) {
       throw new Error('No response from OpenAI');
     }
 
-    return response.data.choices[0].message.content.trim();
+    return response.choices[0].message.content.trim();
   } catch (error) {
-    console.error('OpenAI API error:', error.response?.data || error.message);
+    console.error('OpenAI API error:', error);
     
-    if (error.response?.status === 429) {
+    if (error.status === 429) {
       throw new Error('AI service temporarily unavailable due to high demand. Please try again in a moment.');
-    } else if (error.response?.status === 401) {
+    } else if (error.status === 401) {
       throw new Error('AI service configuration error.');
     } else {
       throw new Error('AI service temporarily unavailable. Please try again later.');

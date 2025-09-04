@@ -314,10 +314,11 @@
                     <article class="project-card" data-type="work" data-project="ugc-stories" tabindex="0">
                         <div class="project-thumbnail">
                             <div class="thumbnail-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                                <div class="geometric-animation dashboard-shape">
+                                <div class="geometric-animation ugc-shape">
                                     <div class="shape-layer shape-1"></div>
                                     <div class="shape-layer shape-2"></div>
                                     <div class="shape-layer shape-3"></div>
+                                    <div class="shape-layer shape-4"></div>
                                 </div>
                             </div>
                         </div>
@@ -560,9 +561,18 @@
         <div class="chat-panel" id="chat-panel" aria-hidden="true">
             <div class="chat-header">
                 <h3 class="chat-title">Ask About My Experience</h3>
-                <button class="chat-close" aria-label="Close chat">
-                    <span aria-hidden="true">×</span>
-                </button>
+                <div class="chat-header-buttons">
+                    <button class="chat-clear" aria-label="Clear chat history" title="Clear chat">
+                        <svg class="chat-clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 6h18"/>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                        </svg>
+                    </button>
+                    <button class="chat-close" aria-label="Close chat">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
             </div>
             <div class="chat-messages" id="chat-messages" role="log" aria-live="polite">
                 <div class="chat-message bot-message">

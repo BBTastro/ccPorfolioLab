@@ -23,10 +23,10 @@ const CONFIG = {
   MAGNETIC_STRENGTH: 0.15,
   MAGNETIC_DAMPENING: 0.92,
   
-  // Local storage keys
+  // Storage keys
   STORAGE_KEYS: {
-    THEME: 'portfolio-theme',
-    CHAT_HISTORY: 'portfolio-chat-history'
+    THEME: 'portfolio-theme', // Use localStorage for theme (persists across sessions)
+    CHAT_HISTORY: 'portfolio-chat-history' // Will use sessionStorage (clears on new session)
   }
 };
 
@@ -45,7 +45,7 @@ Production & Management: Adobe Creative Suite, DaVinci Resolve, Blender, Figma, 
 PROFESSIONAL EXPERIENCE
 Creative Context Studio | Atlanta, GA & Brooklyn, NY
 Producer & Creative Director | June 2019 - Present • AI-Powered Project Leadership: Manage end-to-end delivery of creative and AI-enabled projects including branded chatbots with RAG-based knowledge systems and micro app creation using Claude Code and agentic workflows • Client Advisory Services: Serve as primary client contact for Fortune 500 brands including IBM, JP Morgan Chase, and Adidas, managing expectations and providing strategic project updates that build confidence and clarity • Cross-Functional Team Coordination:Lead collaboration between creative leaders, crews, AI engineers, content designers, creative teams, and external partners, translating between technical and creative requirements for seamless project execution • Content Delivery Pipeline Optimization:Developed workflows spanning generative AI content creation, game and interactive development • Creative Production Oversight: Manage deliverables across formats including videos, automated UGC, brand spokesperson content, newsletter/blog collaboration tools, and operational systems for marketing campaigns, project tracking, and budget management
-Ruder Finn RF Studio53 | New York, NY
+NYC agency | New York, NY
 Producer | August 2022 - June 2025 • Managed day-to-day client relationships and project delivery for agency clients across technology, finance, healthcare, pharmaceutical, and brand sectors, handling client communications, scope management, billing requirements, and campaign asset delivery while maintaining clear project timelines and stakeholder expectations. Interactive Experience Design: Managed VR, XR, and live interactive exhibits requiring complex technical production and client stakeholder coordination • Unity/Unreal/three.js, Luxury Travel Simulator and VR science lab tours.• Live Event Interactive HeyGen Brand Ambassador Avatars •  AI Tool Development: Created creative tools for content creators and brands including automated content generation and brand spokesperson systems
 The CW Network | Studio Production
 Production Manager - "Would I Lie To You?" | 2022 • Project Leadership & Operational Excellence: Owned live studio prodcution of 13-episode production with 45+ team members, developing schedules, managing budgets, and ensuring transparent project flow from studio build through network delivery • Client Management & Communication: Served as primary liaison with network executives, A list Talent, leading project communications and providing strategic updates on scope, milestones, and deliverables
@@ -450,7 +450,7 @@ function openModal(projectId) {
   function getAnimationClass(projectId) {
     switch(projectId) {
       case 'context-engineering':
-        return 'modal-context-shape';
+        return 'modal-brand-shape';
       case 'ugc-stories':
         return 'modal-ugc-shape';
       case 'tv-film-brand':
@@ -484,8 +484,8 @@ function openModal(projectId) {
     
     // Generate shape layers based on animation type
     let shapeLayers = '';
-    if (animationClass === 'modal-context-shape') {
-      // Context engineering needs 4 shape layers
+    if (animationClass === 'modal-ugc-shape' || animationClass === 'modal-animation-shape') {
+      // UGC and film shapes need 4 shape layers
       shapeLayers = `
         <div class="shape-layer shape-1"></div>
         <div class="shape-layer shape-2"></div>
@@ -644,7 +644,8 @@ function initializeModals() {
 // ==========================================================================
 
 function initializeChatHistory() {
-  const saved = localStorage.getItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
+  // Use sessionStorage so chat history clears on new browser session/tab
+  const saved = sessionStorage.getItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
   if (saved) {
     try {
       state.chatHistory = JSON.parse(saved);
@@ -654,13 +655,50 @@ function initializeChatHistory() {
       state.chatHistory = [];
     }
   }
+  
+  // Always ensure we start with empty history for new visitors
+  if (!state.chatHistory || state.chatHistory.length === 0) {
+    state.chatHistory = [];
+    renderChatHistory(); // This will show just the welcome message
+  }
 }
 
 function saveChatHistory() {
   try {
-    localStorage.setItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY, JSON.stringify(state.chatHistory));
+    // Use sessionStorage so chat clears when browser session ends
+    sessionStorage.setItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY, JSON.stringify(state.chatHistory));
   } catch (e) {
     console.warn('Failed to save chat history:', e);
+  }
+}
+
+function clearChatHistory() {
+  try {
+    // Clear both state and storage
+    state.chatHistory = [];
+    sessionStorage.removeItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
+    renderChatHistory(); // Re-render to show just the welcome message
+    console.log('Chat history cleared');
+  } catch (e) {
+    console.warn('Failed to clear chat history:', e);
+  }
+}
+
+function ensureFreshChatSession() {
+  // This function ensures each new visitor gets a fresh chat experience
+  // It's called on page load to clean up any lingering session data
+  try {
+    // Check if this is a genuine new session by looking for a session marker
+    const sessionMarker = sessionStorage.getItem('portfolio-chat-session');
+    
+    if (!sessionMarker) {
+      // This is a new session - clear any existing chat data and mark the session
+      sessionStorage.removeItem(CONFIG.STORAGE_KEYS.CHAT_HISTORY);
+      sessionStorage.setItem('portfolio-chat-session', Date.now().toString());
+      state.chatHistory = [];
+    }
+  } catch (e) {
+    console.warn('Failed to ensure fresh chat session:', e);
   }
 }
 
@@ -812,9 +850,13 @@ function toggleChat() {
 function initializeChat() {
   const chatToggle = document.querySelector('.chat-toggle');
   const chatClose = document.querySelector('.chat-close');
+  const chatClear = document.querySelector('.chat-clear');
   const chatForm = document.getElementById('chat-form');
   const chatInput = document.getElementById('chat-input');
 
+  // Ensure fresh session for new visitors
+  ensureFreshChatSession();
+  
   // Initialize chat history
   initializeChatHistory();
 
@@ -828,6 +870,15 @@ function initializeChat() {
     chatClose.addEventListener('click', () => {
       if (state.chatOpen) {
         toggleChat();
+      }
+    });
+  }
+
+  // Clear chat history
+  if (chatClear) {
+    chatClear.addEventListener('click', () => {
+      if (confirm('Clear chat history? This will remove all messages.')) {
+        clearChatHistory();
       }
     });
   }
