@@ -9,8 +9,7 @@
     "start": "npm run dev",
     "lint": "echo 'No linting configured for vanilla HTML/CSS/JS'",
     "typecheck": "echo 'No TypeScript in use'",
-    "deploy": "vercel --prod",
-    
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "openai": "^3.3.0"

@@ -208,8 +208,8 @@ function initializeTheme() {
   const savedTheme = localStorage.getItem(CONFIG.STORAGE_KEYS.THEME);
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
-  // Default to dark when no saved preference
-  state.theme = savedTheme || 'dark' || (prefersDark ? 'dark' : 'light');
+  // Use saved theme, or respect system preference, fallback to dark
+  state.theme = savedTheme || (prefersDark ? 'dark' : 'light');
   applyTheme(state.theme);
 }
 
